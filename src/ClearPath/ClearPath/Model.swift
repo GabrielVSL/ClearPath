@@ -12,8 +12,8 @@ struct Usuario: Decodable, Identifiable{
     let id: String?
     let nascimento: String?
     let tempoFumado: String?
-    let valorPacote: Double?
-    let cigarrosDia: Int?
+    let valorPacote: String?
+    let cigarrosDia: String?
     let maiorStreak: Int?
     let streakAtual: Int?
     let pontosAdquiridos: Int?
@@ -24,7 +24,6 @@ struct Usuario: Decodable, Identifiable{
     let melhorPos: Int?
     let metaCigarros: Int?
     let metaUsuario: Int?
-//  let grupo: String?
 }
 
 struct Grupo: Decodable, Identifiable{
@@ -36,5 +35,5 @@ struct Grupo: Decodable, Identifiable{
 
 struct Comentarios: Decodable, Hashable {
     let data: Int?
-    let comentario: String?
+    let comentario: String? //[Usuario]
 }

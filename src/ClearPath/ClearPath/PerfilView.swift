@@ -76,12 +76,12 @@ struct SheetView: View {
     }
 }
 
-struct ContentView: View {
+struct PerfilView: View {
     @State private var showingSheet = false
     @State private var selectedImage: Image? = Image("1")
     @State private var showImagePicker = false
     @State private var inputImage: UIImage?
-    
+    @StateObject var viewModel = ViewModelUsuario()
     var body: some View {
         ZStack {
             Color(.verdeFundo)
@@ -111,16 +111,25 @@ struct ContentView: View {
                         Spacer().frame(width: 2)
                         
                         VStack {
-                            Text("Vinícius Santos")
-                                .frame(maxWidth: 230)
-                                .bold()
-                                .font(.title)
                             
-                            Text("Fumante por 8 anos")
-                                .foregroundStyle(.gray)
+                            ForEach(viewModel.usuario.prefix(1), id: \.id){usuario in
+                                Text(usuario.nome!)
+                                    .frame(maxWidth: 230)
+                                    .bold()
+                                    .font(.title)
+                            }
                             
-                            Text("Meta: 90 dias limpo")
-                                .foregroundStyle(.gray)
+                            ForEach(viewModel.usuario.prefix(1), id: \.id){usuario in
+                                Text("Fumante há \(usuario.tempoFumado!) ano(s)")                                    .foregroundStyle(.gray)
+                            }
+                            
+                            ForEach(Array(viewModel.usuario.prefix(1)), id: \.id) { usuario in
+                                Text("Meta: \(usuario.metaUsuario ?? 0) dias limpo")  // Melhor usar `??` para evitar forçar um valor nulo
+                                    .foregroundStyle(.gray)
+                            }
+                            
+                            //                            Text(viewModel.usuario.first?.metaUsuario!)
+                            //                                .foregroundStyle(.gray)
                         }
                     }
                 }
@@ -140,9 +149,12 @@ struct ContentView: View {
                                 .padding(.bottom, 3)
                             Text("Melhor Streak")
                                 .bold()
-                            Text("15 dias")
-                                .foregroundStyle(.verdeClaro)
-                                .bold()
+                            
+                            ForEach(Array(viewModel.usuario.prefix(1)), id: \.id) { usuario in
+                                Text(" \(usuario.maiorStreak ?? 1)")
+                                    .foregroundStyle(.verdeClaro)
+                                    .bold()
+                            }
                         }
                     }
                     Spacer()
@@ -159,11 +171,19 @@ struct ContentView: View {
                                 .resizable()
                                 .frame(width: 25, height: 25)
                                 .padding(.bottom, 2)
-                            Text("Economia")
+                            Text("Economia mensal")
                                 .bold()
-                            Text("R$ 500,00")
-                                .foregroundStyle(.verdeClaro)
-                                .bold()
+                            
+                            ForEach(Array(viewModel.usuario.prefix(1)), id: \.id) { usuario in
+                                let valorPacote = Double(usuario.valorPacote!) ?? 0.0
+                                let cigarrosDia = usuario.cigarrosDia!
+                                
+                                let economiaMensal = Double(cigarrosDia)! * valorPacote * 30
+                                
+                                Text("R$ \(String(format: "%.2f", economiaMensal))")
+                                    .foregroundStyle(.verdeClaro)
+                                    .bold()
+                            }
                         }
                     }
                 }
@@ -278,12 +298,16 @@ struct ContentView: View {
                 Spacer()
                     .frame(height: 20)
             }
+            
         }
         .onTapGesture {
             showImagePicker.toggle()
         }
         .sheet(isPresented: $showImagePicker, onDismiss: loadImage) {
             ImagePicker(image: $inputImage)
+        }
+        .onAppear(){
+            viewModel.fetch()
         }
     }
     
@@ -328,5 +352,5 @@ struct ImagePicker: UIViewControllerRepresentable {
 }
 
 #Preview {
-    ContentView()
+    PerfilView()
 }

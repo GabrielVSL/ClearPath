@@ -59,34 +59,35 @@ struct MainView: View {
                         .padding(.vertical, 2)
                         .shadow(radius: 6)
                         
-                        VStack {
-                            HStack {
+                        NavigationLink(destination: RankingView()){
+                            VStack {
+                                HStack {
+                                    
+                                    
+                                    Text("Grupo")
+                                        .foregroundStyle(Color.white)
+                                        .font(.system(size: 22))
+                                        .padding(.horizontal, 20)
+                                        .fontWeight(.heavy)
+                                        .offset(x: 16)
+                                    
+                                    Image(systemName: "person.3.fill")
+                                        .foregroundStyle(Color.white)
+                                        .padding(.horizontal)
+                                        .fontWeight(.heavy)
+                                        .offset(x: -21)
+                                        .offset(y: 2)
+                                    
+                                } // HStack
                                 
-                                
-                                Text("Grupo")
-                                    .foregroundStyle(Color.white)
-                                    .font(.system(size: 22))
-                                    .padding(.horizontal, 20)
-                                    .fontWeight(.heavy)
-                                    .offset(x: 16)
-                                
-                                Image(systemName: "person.3.fill")
-                                    .foregroundStyle(Color.white)
-                                    .padding(.horizontal)
-                                    .fontWeight(.heavy)
-                                    .offset(x: -21)
-                                    .offset(y: 2)
-                                
-                            } // HStack
-                            
-                        } //Vstack - Grupo
-                        .frame(width: 330, height: 50)
-                        .background(Color.verdeClaro)
-                        .cornerRadius(17)
-                        .padding(.horizontal, 20)
-                        .padding(.vertical, 2)
-                        .shadow(radius: 6)
-                        
+                            } //Vstack - Grupo
+                            .frame(width: 330, height: 50)
+                            .background(Color.verdeClaro)
+                            .cornerRadius(17)
+                            .padding(.horizontal, 20)
+                            .padding(.vertical, 2)
+                            .shadow(radius: 6)
+                        }
                         
                         VStack {
                             HStack {

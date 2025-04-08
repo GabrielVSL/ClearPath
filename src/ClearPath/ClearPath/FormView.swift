@@ -8,7 +8,16 @@
 import SwiftUI
 
 struct FormView: View {
-    @State private var nome: String = " "
+    @State private var nome: String = ""
+    @State private var nascimento: String = ""
+    @State private var cigarrosDia: String = ""
+    @State private var precoMedio: String = ""
+    @State private var tempoFumante: String = ""
+    @State var isLoading = false
+    @State var showAlert = false
+    @State var alertMessage = ""
+    @State private var shouldNavigate = false
+    
     var body: some View {
         ZStack {
             Color.verdeFundo
@@ -25,12 +34,12 @@ struct FormView: View {
                                     .fontWeight(.heavy)
                                 
                                 Spacer()
-                            } // HStack
+                            }
                             Text("Conte mais sobre seus hábitos para personalizarmos seu plano")
                                 .foregroundStyle(Color.white)
                                 .padding(.horizontal)
                             
-                        } //Vstack - Dicas Diarias
+                        }
                         .frame(width: 330, height: 116)
                         .background(Color.verdeClaro)
                         .cornerRadius(17)
@@ -48,7 +57,7 @@ struct FormView: View {
                                     .fontWeight(.heavy)
                                 
                                 Spacer()
-                            } // HStack
+                            }
                             VStack {
                                 TextField(" ", text: $nome)
                                     .foregroundStyle(Color.black)
@@ -69,9 +78,9 @@ struct FormView: View {
                                     .fontWeight(.heavy)
                                 
                                 Spacer()
-                            } // HStack
+                            }
                             VStack {
-                                TextField(" ", text: $nome)
+                                TextField(" ", text: $nascimento)
                                     .foregroundStyle(Color.black)
                                     .padding(.vertical, 17)
                                     .padding(.horizontal, 10)
@@ -90,9 +99,9 @@ struct FormView: View {
                                     .fontWeight(.heavy)
                                 
                                 Spacer()
-                            } // HStack
+                            }
                             VStack {
-                                TextField(" ", text: $nome)
+                                TextField(" ", text: $cigarrosDia)
                                     .foregroundStyle(Color.black)
                                     .padding(.vertical, 17)
                                     .padding(.horizontal, 10)
@@ -111,9 +120,9 @@ struct FormView: View {
                                     .fontWeight(.heavy)
                                 
                                 Spacer()
-                            } // HStack
+                            }
                             VStack {
-                                TextField(" ", text: $nome)
+                                TextField(" ", text: $precoMedio)
                                     .foregroundStyle(Color.black)
                                     .padding(.vertical, 17)
                                     .padding(.horizontal, 10)
@@ -132,9 +141,9 @@ struct FormView: View {
                                     .fontWeight(.heavy)
                                 
                                 Spacer()
-                            } // HStack
+                            }
                             VStack {
-                                TextField(" ", text: $nome)
+                                TextField(" ", text: $tempoFumante)
                                     .foregroundStyle(Color.black)
                                     .padding(.horizontal, 10)
                                     .font(.system(size: 15))
@@ -145,8 +154,7 @@ struct FormView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                             .padding(.bottom)
                             
-                            
-                        } //Vstack - Campos de Resposta
+                        }
                         .background(Color.white)
                         .cornerRadius(17)
                         .padding(.horizontal, 20)
@@ -161,7 +169,6 @@ struct FormView: View {
                                         .frame(width: 20, height: 20)
                                         .foregroundStyle(Color.blue)
                                         .bold()
-                                    
                                 }
                                 .padding(.horizontal, 20)
                                 .background(Color.white)
@@ -173,7 +180,7 @@ struct FormView: View {
                                     .offset(x: -17)
                                 
                                 Spacer()
-                            } // HStack
+                            }
                             Text("- Seu gasto mensal com cigarros\n- Metas personalizadas de redução\n- Impacto na sua saúde")
                                 .foregroundStyle(Color.white)
                                 .padding(.horizontal)
@@ -181,7 +188,7 @@ struct FormView: View {
                                 .font(.system(size: 15))
                                 .bold()
                             
-                        } //Vstack - Dicas Diarias
+                        }
                         .frame(width: 330, height: 116)
                         .background(Color.verde)
                         .cornerRadius(17)
@@ -189,8 +196,13 @@ struct FormView: View {
                         .padding(.vertical, 8)
                         .shadow(radius: 6)
                         
-                        NavigationLink(destination: MainView()) {
-                            
+                        Button(action: {
+                            enviarDados()
+                        }) {
+                            if isLoading {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle(tint: .white))
+                            } else {
                                 VStack {
                                     HStack {
                                         Text("Salvar e Continuar")
@@ -198,25 +210,142 @@ struct FormView: View {
                                             .font(.system(size: 25))
                                             .padding(.horizontal, 20)
                                             .fontWeight(.heavy)
-                                    } // HStack
-                                } // VStack
+                                    }
+                                }
                                 .frame(width: 330, height: 50)
-                                .background(Color.verdeClaro) // Certifique-se de que você tenha essa cor definida
+                                .background(Color.verdeClaro)
                                 .cornerRadius(17)
                                 .padding(.horizontal, 20)
                                 .padding(.vertical, 8)
                                 .shadow(radius: 6)
                             }
                         }
-
-                    }// VStack - Total
-                } // ScrollView
-            } // NavigationStack
-        .navigationBarBackButtonHidden(true)
-        } // ZStack
+                    }
+                }
+            }
+            .navigationBarBackButtonHidden(true)
+            .alert("Atenção", isPresented: $showAlert) {
+                Button("OK", role: .cancel) { shouldNavigate = true }
+                
+            } message: {
+                Text(alertMessage)
+            }
+            
+            NavigationLink(
+                destination: MainView(),
+                isActive: $shouldNavigate,
+                label: { EmptyView() }
+            )
+        }
     }
     
-
+    func enviarDados() {
+        guard !nome.isEmpty else {
+            alertMessage = "Por favor, preencha seu nome"
+            showAlert = true
+            return
+        }
+        
+        guard !nascimento.isEmpty else {
+            alertMessage = "Por favor, preencha sua data de nascimento"
+            showAlert = true
+            return
+        }
+        
+        guard !cigarrosDia.isEmpty else {
+            alertMessage = "Por favor, informe quantos cigarros fuma por dia"
+            showAlert = true
+            return
+        }
+        
+        guard !precoMedio.isEmpty else {
+            alertMessage = "Por favor, informe o preço médio do maço"
+            showAlert = true
+            return
+        }
+        
+        guard !tempoFumante.isEmpty else {
+            alertMessage = "Por favor, informe há quantos anos fuma"
+            showAlert = true
+            return
+        }
+        
+        isLoading = true
+        
+        let novoUsuario: [String: Any] = [
+            "nome": nome.trimmingCharacters(in: .whitespacesAndNewlines),
+            "nascimento": nascimento.trimmingCharacters(in: .whitespacesAndNewlines),
+            "cigarrosDia": cigarrosDia.trimmingCharacters(in: .whitespacesAndNewlines),
+            "valorPacote": precoMedio.trimmingCharacters(in: .whitespacesAndNewlines),
+            "tempoFumado": tempoFumante.trimmingCharacters(in: .whitespacesAndNewlines),
+            "id": "",
+            "maiorStreak": 0,
+            "streakAtual": 0,
+            "pontosAdquiridos": 0,
+            "fotoPerfil": "",
+            "amigos": [],
+            "comentarios": [],
+            "posAtual": 0,
+            "melhorPos": 0,
+            "metaCigarros": 0,
+            "metaUsuario": 0
+        ]
+        
+        guard let url = URL(string: "http://192.168.128.25:1880/usuarioPost") else {
+            alertMessage = "URL inválida"
+            showAlert = true
+            isLoading = false
+            return
+        }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: novoUsuario, options: [])
+        } catch {
+            alertMessage = "Erro ao criar o JSON: \(error.localizedDescription)"
+            showAlert = true
+            isLoading = false
+            return
+        }
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            DispatchQueue.main.async {
+                isLoading = false
+                
+                if let error = error {
+                    alertMessage = "Erro na requisição: \(error.localizedDescription)"
+                    showAlert = true
+                    return
+                }
+                
+                if let httpResponse = response as? HTTPURLResponse {
+                    if httpResponse.statusCode == 200 {
+                        nome = ""
+                        nascimento = ""
+                        cigarrosDia = ""
+                        precoMedio = ""
+                        tempoFumante = ""
+                        
+                        alertMessage = "Dados enviados com sucesso!"
+                        showAlert = true
+                        shouldNavigate = true
+                    } else {
+                        alertMessage = "Erro ao enviar dados (Status: \(httpResponse.statusCode))"
+                        showAlert = true
+                    }
+                } else {
+                    alertMessage = "Resposta inválida do servidor"
+                    showAlert = true
+                }
+            }
+        }
+        
+        task.resume()
+    }
+}
 
 #Preview {
     FormView()
