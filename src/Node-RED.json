@@ -1,0 +1,437 @@
+[
+    {
+        "id": "d805ec9376ba7e2a",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/usuarioPost",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 120,
+        "wires": [
+            [
+                "6e7f3715f7583e2b"
+            ]
+        ]
+    },
+    {
+        "id": "0807b92f34602adb",
+        "type": "cloudantplus out",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "clearpath001",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 490,
+        "y": 120,
+        "wires": [
+            [
+                "ff2bd908a35eb37d"
+            ]
+        ]
+    },
+    {
+        "id": "ff2bd908a35eb37d",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 670,
+        "y": 120,
+        "wires": []
+    },
+    {
+        "id": "7cc3704ba6e61eef",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/usuarioGet",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 180,
+        "y": 180,
+        "wires": [
+            [
+                "c81dc3d2e2bac82b"
+            ]
+        ]
+    },
+    {
+        "id": "c81dc3d2e2bac82b",
+        "type": "cloudantplus in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "clearpath001",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 490,
+        "y": 180,
+        "wires": [
+            [
+                "89f67fa7e829aa25"
+            ]
+        ]
+    },
+    {
+        "id": "89f67fa7e829aa25",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 650,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "c6455ba0e1224416",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/grupoPost",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 140,
+        "y": 260,
+        "wires": [
+            [
+                "6f4c336e830d1bda"
+            ]
+        ]
+    },
+    {
+        "id": "9ea0de2eb390aa44",
+        "type": "cloudantplus out",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "clearpathteste8",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 500,
+        "y": 260,
+        "wires": [
+            [
+                "ceda0999471a0d13"
+            ]
+        ]
+    },
+    {
+        "id": "ceda0999471a0d13",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "af8596cfbea82d93",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/grupoGet",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 200,
+        "y": 320,
+        "wires": [
+            [
+                "c5dbdad88c0a733e"
+            ]
+        ]
+    },
+    {
+        "id": "c5dbdad88c0a733e",
+        "type": "cloudantplus in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "clearpathteste8",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 480,
+        "y": 320,
+        "wires": [
+            [
+                "634deb3f2e679dc2"
+            ]
+        ]
+    },
+    {
+        "id": "634deb3f2e679dc2",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "f8874b59c8780691",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/usuarioUpdate",
+        "method": "put",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "f6bc964890e37620"
+            ]
+        ]
+    },
+    {
+        "id": "f6bc964890e37620",
+        "type": "cloudantplus out",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "clearpath.9",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 510,
+        "y": 400,
+        "wires": [
+            [
+                "9a6420c204b04c99"
+            ]
+        ]
+    },
+    {
+        "id": "9a6420c204b04c99",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 690,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "6f4c336e830d1bda",
+        "type": "split",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 310,
+        "y": 260,
+        "wires": [
+            [
+                "9ea0de2eb390aa44"
+            ]
+        ]
+    },
+    {
+        "id": "e3e6feb75831c3d6",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/comentarioPost",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 460,
+        "wires": [
+            [
+                "9e085721ea743570"
+            ]
+        ]
+    },
+    {
+        "id": "604c73ebab5d63f6",
+        "type": "cloudantplus out",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "comentariosbanco10",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 520,
+        "y": 460,
+        "wires": [
+            [
+                "3b32a67168ff9145"
+            ]
+        ]
+    },
+    {
+        "id": "3b32a67168ff9145",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 770,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "8bec722e8bd5314b",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/comentarioGet",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 210,
+        "y": 520,
+        "wires": [
+            [
+                "083901c1c37bb00d"
+            ]
+        ]
+    },
+    {
+        "id": "083901c1c37bb00d",
+        "type": "cloudantplus in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "comentariosbanco10",
+        "service": "_ext_",
+        "search": "_all_",
+        "design": "",
+        "index": "",
+        "x": 440,
+        "y": 520,
+        "wires": [
+            [
+                "2eeeb32e4fb57d9f"
+            ]
+        ]
+    },
+    {
+        "id": "2eeeb32e4fb57d9f",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 630,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "9e085721ea743570",
+        "type": "split",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 310,
+        "y": 460,
+        "wires": [
+            [
+                "604c73ebab5d63f6"
+            ]
+        ]
+    },
+    {
+        "id": "d9a8e6033934bc54",
+        "type": "http in",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "url": "/comentarioPostSemSplit",
+        "method": "post",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 170,
+        "y": 620,
+        "wires": [
+            [
+                "4e5092f00ddf988b"
+            ]
+        ]
+    },
+    {
+        "id": "4e5092f00ddf988b",
+        "type": "cloudantplus out",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "cloudant": "4799063150e3fc8f",
+        "database": "comentariosbanco10",
+        "service": "_ext_",
+        "payonly": true,
+        "operation": "insert",
+        "x": 480,
+        "y": 620,
+        "wires": [
+            [
+                "dc28d81aa4a4a895"
+            ]
+        ]
+    },
+    {
+        "id": "dc28d81aa4a4a895",
+        "type": "http response",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 790,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "6e7f3715f7583e2b",
+        "type": "split",
+        "z": "adda8638b9fc0319",
+        "name": "",
+        "splt": "\\n",
+        "spltType": "str",
+        "arraySplt": 1,
+        "arraySpltType": "len",
+        "stream": false,
+        "addname": "",
+        "x": 330,
+        "y": 80,
+        "wires": [
+            [
+                "0807b92f34602adb"
+            ]
+        ]
+    },
+    {
+        "id": "4799063150e3fc8f",
+        "type": "cloudantplus",
+        "host": "https://f1c0dcf9-5075-4061-a1f8-2f4ca596058a-bluemix.cloudantnosqldb.appdomain.cloud",
+        "name": "Credencial1",
+        "useapikey": true
+    }
+]
