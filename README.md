@@ -4,6 +4,16 @@ ClearPath é um aplicativo inovador voltado para a saúde, criado para ajudar fu
 
 ---
 
+## 🎨 Identidade Visual
+
+<div align="center">
+  <img src="/assets/logo.png" width="150" style="border-radius: 16px; border: 2px solid #e0e0e0;">
+  <h3>Design do Ícone</h3>
+  <p>Representa uma trilha limpa (caminho verde) saindo de um pulmão estilizado, simbolizando a jornada rumo à saúde plena</p>
+</div>
+
+---
+
 ## Descrição do Projeto 📖
 
 ClearPath foi desenvolvido com o objetivo de incentivar a mudança de hábito, permitindo que os usuários monitorem seu progresso, compartilhem conquistas e se desafiem mutuamente em um ambiente de apoio. Inspirado em aplicativos que promovem engajamento por meio de desafios e sequências diárias (streaks), ClearPath oferece:
