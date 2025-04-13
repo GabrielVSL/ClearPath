@@ -98,12 +98,13 @@ Plataforma de gamificação que estimula competições saudáveis entre comunida
 | Comunidade | Dicas Diárias | Perfil |
 |-------------------|--------------------------|---------------------|
 | ![Tela 1](/assets/comunidade.png) | ![Tela 2](/assets/dicasDiarias.png) | ![Tela 3](/assets/perfil.png) |
-
+<div align="center">
+  
 | Edição de Avatar | Ranking |
 |-------------------|--------------------------|
-| ![Tela 1](/assets/edicaoAvatar.png) | ![Tela 2](/assets/ranking.png) |
+| <img src="/assets/edicaoAvatar.png" width="300" style="border: 1px solid #eee; border-radius: 8px;"> | <img src="/assets/ranking.png" width="300" style="border: 1px solid #eee; border-radius: 8px;"> |
 
-*Protótipos desenvolvidos no Figma e implementação final*
+</div>
 
 ## 🎥 Demonstração
 
